@@ -1,9 +1,6 @@
-// Get button and title elements
-const button = document.getElementById("myButton");
-const title = document.getElementById("title");
+// Dark mode toggle
+const themeBtn = document.getElementById("themeBtn");
 
-// Add click event
-button.addEventListener("click", function () {
-    title.textContent = "Button Clicked!";
-    alert("You clicked the button!");
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
 });
