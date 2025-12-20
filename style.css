@@ -54,7 +54,7 @@ body {
 }
 
 /* =========================================================
-   SINGLE ICON THEME TOGGLE (Sun / Moon)
+   SINGLE ICON THEME TOGGLE
    ========================================================= */
 #themeToggle {
     margin-top: 25px;
@@ -64,14 +64,11 @@ body {
     border: none;
     cursor: pointer;
     font-size: 20px;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-
     transition: transform 0.3s ease, background 0.3s ease;
 }
 
@@ -79,7 +76,6 @@ body {
     transform: scale(1.1);
 }
 
-/* Dark mode toggle background */
 body.dark #themeToggle {
     background: rgba(0, 0, 0, 0.4);
 }
@@ -117,7 +113,42 @@ h2 {
 }
 
 /* =========================================================
-   SKILLS (Animated on hover only)
+   TOGGLE CONTENT (Accordion Effect)
+   ========================================================= */
+.toggle-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: max-height 0.6s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+
+.cv-section.active .toggle-content {
+    max-height: 1000px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toggle-title {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.toggle-title::after {
+    content: "＋";
+    position: absolute;
+    right: 0;
+    font-size: 22px;
+    transition: transform 0.3s ease;
+}
+
+.cv-section.active .toggle-title::after {
+    content: "−";
+}
+
+/* =========================================================
+   SKILLS (Animated on hover)
    ========================================================= */
 .skills {
     display: flex;
@@ -149,22 +180,14 @@ h2 {
     inset: 0;
     padding: 2px;
     border-radius: 999px;
-    background: linear-gradient(
-        90deg,
-        #2563eb,
-        #22c55e,
-        #06b6d4,
-        #2563eb
-    );
+    background: linear-gradient(90deg, #2563eb, #22c55e, #06b6d4, #2563eb);
     background-size: 300% 300%;
     animation: borderMove 4s linear infinite;
-
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
@@ -175,7 +198,7 @@ h2 {
 }
 
 /* =========================================================
-   PROJECTS GRID
+   PROJECTS
    ========================================================= */
 .projects {
     display: grid;
@@ -183,7 +206,6 @@ h2 {
     gap: 20px;
 }
 
-/* PROJECT CARDS */
 .card {
     position: relative;
     padding: 25px;
@@ -205,22 +227,14 @@ h2 {
     inset: 0;
     padding: 2px;
     border-radius: 16px;
-    background: linear-gradient(
-        120deg,
-        #2563eb,
-        #9333ea,
-        #22c55e,
-        #2563eb
-    );
+    background: linear-gradient(120deg, #2563eb, #9333ea, #22c55e, #2563eb);
     background-size: 300% 300%;
     animation: borderMove 6s linear infinite;
-
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
@@ -262,22 +276,14 @@ h2 {
     inset: 0;
     padding: 2px;
     border-radius: 16px;
-    background: linear-gradient(
-        120deg,
-        #2563eb,
-        #22c55e,
-        #06b6d4,
-        #2563eb
-    );
+    background: linear-gradient(120deg, #2563eb, #22c55e, #06b6d4, #2563eb);
     background-size: 300% 300%;
     animation: borderMove 5s linear infinite;
-
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
