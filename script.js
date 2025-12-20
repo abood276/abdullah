@@ -1,6 +1,4 @@
-// ================================
-// Theme Toggle (Sun / Moon)
-// ================================
+// Dark mode toggle
 const themeBtn = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 
@@ -14,10 +12,8 @@ themeBtn.addEventListener("click", () => {
     }
 });
 
-// ================================
-// Click toggles for non-hover sections
-// ================================
-const sections = document.querySelectorAll(".cv-section:not(.hover-section)");
+// Click toggles for non-hover sections (none needed for always visible sections)
+const sections = document.querySelectorAll(".cv-section:not(.hover-section):not(.always-visible)");
 
 sections.forEach(section => {
     const title = section.querySelector(".toggle-title");
@@ -26,7 +22,6 @@ sections.forEach(section => {
         sections.forEach(s => {
             if (s !== section) s.classList.remove("active");
         });
-        // Toggle clicked
         section.classList.toggle("active");
     });
 });

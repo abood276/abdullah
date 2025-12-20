@@ -1,7 +1,4 @@
-/* =========================================================
-   CSS VARIABLES (Light & Dark Mode)
-   ========================================================= */
-   :root {
+:root {
     --bg: #f5f7fa;
     --card: #ffffff;
     --text: #1f2933;
@@ -17,9 +14,6 @@ body.dark {
     --shadow: rgba(0, 0, 0, 0.4);
 }
 
-/* =========================================================
-   RESET & BASE STYLES
-   ========================================================= */
 * {
     margin: 0;
     padding: 0;
@@ -34,9 +28,6 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* =========================================================
-   HERO HEADER
-   ========================================================= */
 .hero {
     text-align: center;
     padding: 70px 20px;
@@ -53,9 +44,6 @@ body {
     opacity: 0.9;
 }
 
-/* =========================================================
-   SINGLE ICON THEME TOGGLE
-   ========================================================= */
 #themeToggle {
     margin-top: 25px;
     width: 46px;
@@ -80,18 +68,12 @@ body.dark #themeToggle {
     background: rgba(0, 0, 0, 0.4);
 }
 
-/* =========================================================
-   MAIN CONTAINER
-   ========================================================= */
 .container {
     max-width: 1100px;
     margin: auto;
     padding: 40px 20px;
 }
 
-/* =========================================================
-   SECTIONS (Card-like with hover lift)
-   ========================================================= */
 section {
     background: var(--card);
     padding: 30px;
@@ -106,15 +88,12 @@ section:hover {
     transform: translateY(-6px);
 }
 
-/* Section titles */
 h2 {
     margin-bottom: 15px;
     color: var(--primary);
 }
 
-/* =========================================================
-   TOGGLE CONTENT (Accordion + Hover Effect)
-   ========================================================= */
+/* Toggle Content */
 .toggle-content {
     max-height: 0;
     opacity: 0;
@@ -122,28 +101,24 @@ h2 {
     transition: max-height 0.6s ease, opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Click toggle active */
 .cv-section.active .toggle-content {
     max-height: 1000px;
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Hover sections */
 .hover-section:hover .toggle-content {
     max-height: 500px;
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Toggle title cursor */
 .toggle-title {
     cursor: pointer;
     user-select: none;
     position: relative;
 }
 
-/* Plus/minus indicator for click sections */
 .toggle-title::after {
     content: "＋";
     position: absolute;
@@ -156,9 +131,14 @@ h2 {
     content: "−";
 }
 
-/* =========================================================
-   SKILLS (Animated on hover)
-   ========================================================= */
+/* Always visible sections */
+.always-visible .toggle-content {
+    max-height: 1000px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Skills */
 .skills {
     display: flex;
     flex-wrap: wrap;
@@ -206,9 +186,7 @@ h2 {
     opacity: 1;
 }
 
-/* =========================================================
-   PROJECTS
-   ========================================================= */
+/* Projects */
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -253,9 +231,7 @@ h2 {
     opacity: 1;
 }
 
-/* =========================================================
-   CONTACT SECTION
-   ========================================================= */
+/* Contact */
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -313,26 +289,17 @@ h2 {
     margin-bottom: 5px;
 }
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
 footer {
     text-align: center;
     padding: 25px;
     opacity: 0.7;
 }
 
-/* =========================================================
-   BORDER ANIMATION
-   ========================================================= */
 @keyframes borderMove {
     0% { background-position: 0% 50%; }
     100% { background-position: 300% 50%; }
 }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
 @media (max-width: 600px) {
     .hero h1 { font-size: 2rem; }
     section { padding: 22px; }
