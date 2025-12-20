@@ -113,28 +113,37 @@ h2 {
 }
 
 /* =========================================================
-   TOGGLE CONTENT (Accordion Effect)
+   TOGGLE CONTENT (Accordion + Hover Effect)
    ========================================================= */
 .toggle-content {
     max-height: 0;
-    overflow: hidden;
     opacity: 0;
     transform: translateY(-10px);
     transition: max-height 0.6s ease, opacity 0.4s ease, transform 0.4s ease;
 }
 
+/* Click toggle active */
 .cv-section.active .toggle-content {
     max-height: 1000px;
     opacity: 1;
     transform: translateY(0);
 }
 
+/* Hover sections */
+.hover-section:hover .toggle-content {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Toggle title cursor */
 .toggle-title {
     cursor: pointer;
     user-select: none;
     position: relative;
 }
 
+/* Plus/minus indicator for click sections */
 .toggle-title::after {
     content: "＋";
     position: absolute;

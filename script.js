@@ -15,13 +15,18 @@ themeBtn.addEventListener("click", () => {
 });
 
 // ================================
-// Accordion Toggle for Sections
+// Click toggles for non-hover sections
 // ================================
-const sections = document.querySelectorAll(".cv-section");
+const sections = document.querySelectorAll(".cv-section:not(.hover-section)");
 
 sections.forEach(section => {
     const title = section.querySelector(".toggle-title");
     title.addEventListener("click", () => {
+        // Close others
+        sections.forEach(s => {
+            if (s !== section) s.classList.remove("active");
+        });
+        // Toggle clicked
         section.classList.toggle("active");
     });
 });
