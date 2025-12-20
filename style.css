@@ -119,18 +119,6 @@ h2 {
     position: relative;
 }
 
-.toggle-title::after {
-    content: "＋";
-    position: absolute;
-    right: 0;
-    font-size: 22px;
-    transition: transform 0.3s ease;
-}
-
-.cv-section.active .toggle-title::after {
-    content: "−";
-}
-
 /* Always visible sections */
 .always-visible .toggle-content {
     max-height: 1000px;
@@ -163,26 +151,22 @@ h2 {
     transform: translateY(-4px);
 }
 
-.skills li::before {
+/* Glowing effect for skills */
+.skills li::after {
     content: "";
     position: absolute;
-    inset: 0;
-    padding: 2px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #2563eb, #22c55e, #06b6d4, #2563eb);
-    background-size: 300% 300%;
-    animation: borderMove 4s linear infinite;
-    -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.3), transparent 70%);
+    filter: blur(30px);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.5s ease;
     z-index: -1;
 }
 
-.skills li:hover::before {
+.skills li:hover::after {
     opacity: 1;
 }
 
@@ -202,6 +186,25 @@ h2 {
     font-weight: 600;
     overflow: hidden;
     transition: transform 0.3s ease;
+}
+
+/* Glowing effect for projects */
+.card::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.3), transparent 70%);
+    filter: blur(30px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.card:hover::after {
+    opacity: 1;
 }
 
 .card:hover {
@@ -249,6 +252,25 @@ h2 {
     box-shadow: 0 8px 20px var(--shadow);
     overflow: hidden;
     transition: transform 0.3s ease;
+}
+
+/* Glowing effect for contact cards */
+.contact-card::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.3), transparent 70%);
+    filter: blur(30px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.contact-card:hover::after {
+    opacity: 1;
 }
 
 .contact-card:hover {
