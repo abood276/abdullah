@@ -53,15 +53,35 @@ body {
     opacity: 0.9;
 }
 
-.hero button {
+/* =========================================================
+   SINGLE ICON THEME TOGGLE (Sun / Moon)
+   ========================================================= */
+#themeToggle {
     margin-top: 25px;
-    padding: 10px 22px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
     border: none;
-    border-radius: 999px;
     cursor: pointer;
-    font-weight: 600;
-    background: white;
-    color: #1e40af;
+    font-size: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+#themeToggle:hover {
+    transform: scale(1.1);
+}
+
+/* Dark mode toggle background */
+body.dark #themeToggle {
+    background: rgba(0, 0, 0, 0.4);
 }
 
 /* =========================================================
@@ -97,7 +117,7 @@ h2 {
 }
 
 /* =========================================================
-   SKILLS (Card-style badges with hover border animation)
+   SKILLS (Animated on hover only)
    ========================================================= */
 .skills {
     display: flex;
@@ -116,7 +136,6 @@ h2 {
     color: var(--text);
     box-shadow: 0 6px 16px var(--shadow);
     overflow: hidden;
-    cursor: default;
     transition: transform 0.3s ease;
 }
 
@@ -139,11 +158,13 @@ h2 {
     );
     background-size: 300% 300%;
     animation: borderMove 4s linear infinite;
+
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
+
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
@@ -171,8 +192,11 @@ h2 {
     text-align: center;
     font-weight: 600;
     overflow: hidden;
-    z-index: 0;
     transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
 }
 
 .card::before {
@@ -190,11 +214,13 @@ h2 {
     );
     background-size: 300% 300%;
     animation: borderMove 6s linear infinite;
+
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
+
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
@@ -202,10 +228,6 @@ h2 {
 
 .card:hover::before {
     opacity: 1;
-}
-
-.card:hover {
-    transform: translateY(-6px);
 }
 
 /* =========================================================
@@ -249,11 +271,13 @@ h2 {
     );
     background-size: 300% 300%;
     animation: borderMove 5s linear infinite;
+
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
+
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
