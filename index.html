@@ -7,44 +7,84 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="hero">
+        <h1>Abdullah Firas</h1>
+        <p class="subtitle">Computer Science Student & Aspiring Developer</p>
+        <button id="themeToggle">
+            <span id="themeIcon">☀️</span> Toggle Theme
+        </button>
+    </header>
 
-<header class="hero">
-    <h1>Abdullah Firas</h1>
-    <p class="subtitle">Computer Science Student & Aspiring Developer</p>
+    <main class="container">
+        <!-- Hover-trigger sections -->
+        <section class="cv-section hover-section">
+            <h2 class="toggle-title">About Me</h2>
+            <div class="toggle-content">
+                <p>I am a motivated student learning web development and building modern, responsive websites using HTML, CSS, and JavaScript.</p>
+            </div>
+        </section>
 
-    <button id="themeToggle" aria-label="Toggle theme">
-        <span class="theme-dot"></span>
-    </button>
-</header>
+        <section class="cv-section hover-section">
+            <h2 class="toggle-title">Education</h2>
+            <div class="toggle-content">
+                <p>Bachelor’s Degree — In Progress</p>
+            </div>
+        </section>
 
-<main class="container">
-    <section class="cv-section">
-        <h2>About Me</h2>
-        <p>Motivated CS student focused on modern web development.</p>
-    </section>
+        <section class="cv-section hover-section">
+            <h2 class="toggle-title">Experience / Courses</h2>
+            <div class="toggle-content">
+                <p>Online courses, personal projects, and hands-on practice.</p>
+            </div>
+        </section>
 
-    <section class="cv-section">
-        <h2>Skills</h2>
-        <ul class="skills">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-        </ul>
-    </section>
+        <!-- Always visible sections -->
+        <section class="cv-section always-visible">
+            <h2 class="toggle-title">Skills</h2>
+            <div class="toggle-content active">
+                <ul class="skills">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>Problem Solving</li>
+                </ul>
+            </div>
+        </section>
 
-    <section class="cv-section">
-        <h2>Projects</h2>
-        <div class="projects">
-            <div class="card">CV Portfolio</div>
-            <div class="card">Mini JS Apps</div>
-        </div>
-    </section>
-</main>
+        <section class="cv-section always-visible">
+            <h2 class="toggle-title">Projects</h2>
+            <div class="toggle-content active">
+                <div class="projects">
+                    <div class="card">CV Portfolio Website</div>
+                    <div class="card">JavaScript Mini Projects</div>
+                    <div class="card">HTML & CSS Practice</div>
+                </div>
+            </div>
+        </section>
 
-<footer>
-    © 2025 Abdullah Firas
-</footer>
+        <section class="cv-section always-visible">
+            <h2 class="toggle-title">Contact</h2>
+            <div class="toggle-content active">
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <span>📧</span>
+                        <p>Email</p>
+                        <strong>example@email.com</strong>
+                    </div>
+                    <div class="contact-card">
+                        <span>📞</span>
+                        <p>Phone</p>
+                        <strong>+964 07726322002</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<script src="script.js"></script>
+    <footer>
+        <p>© 2025 Abdullah Firas</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
