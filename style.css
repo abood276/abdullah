@@ -1,41 +1,21 @@
-/* ===========================
-   VARIABLES
-=========================== */
-:root {
-    --text: #1f2933;
-    --card: rgba(255, 255, 255, 0.75);
-    --primary: #2563eb;
-    --shadow: rgba(0,0,0,0.15);
-}
-
-body.dark {
-    --text: #e5e7eb;
-    --card: rgba(15, 23, 42, 0.75);
-    --primary: #60a5fa;
-    --shadow: rgba(0,0,0,0.6);
-}
-
-/* ===========================
-   RESET
-=========================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-/* ===========================
-   COSMIC BACKGROUND LAYER
-=========================== */
 body {
-    font-family: system-ui, sans-serif;
-    color: var(--text);
     min-height: 100vh;
-    position: relative;
+    color: white;
     overflow-x: hidden;
+    background: black;
 }
 
-/* STAR FIELD (LIGHT MODE) */
+/* ========================= */
+/* 🌞 DAY MODE – BLUE STAR */
+/* ========================= */
+
 body::before {
     content: "";
     position: fixed;
@@ -43,190 +23,126 @@ body::before {
     z-index: -2;
 
     background:
-        radial-gradient(circle, rgba(255,80,80,0.9) 0%, transparent 40%),
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.8) 1px, transparent 2px),
-        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.6) 1px, transparent 2px);
+        radial-gradient(circle at center,
+            rgba(120, 200, 255, 1) 0%,
+            rgba(80, 160, 255, 0.7) 20%,
+            rgba(40, 120, 255, 0.4) 40%,
+            transparent 70%
+        );
 
-    background-size: 600px 600px, 200px 200px, 300px 300px;
-    animation: starDrift 30s linear infinite;
-    filter: blur(1px);
+    filter: blur(60px);
+    animation: blueStar 16s ease-in-out infinite;
 }
 
-/* BLACK HOLE (DARK MODE) */
+@keyframes blueStar {
+    0%   { transform: scale(1) rotate(0deg); }
+    50%  { transform: scale(1.15) rotate(180deg); }
+    100% { transform: scale(1) rotate(360deg); }
+}
+
+/* ========================= */
+/* 🌑 DARK MODE – BLACK HOLE */
+/* ========================= */
+
 body.dark::before {
     background:
         radial-gradient(circle at center,
-            rgba(0,0,0,1) 0%,
-            rgba(5,5,15,0.95) 20%,
-            rgba(15,23,42,0.9) 45%,
-            transparent 70%
-        ),
+            #000 0%,
+            #000 18%,
+            #050505 22%,
+            rgba(0,0,0,0.9) 30%,
+            transparent 60%
+        );
+    filter: blur(6px);
+}
+
+/* ACCRETION DISK */
+body::after {
+    content: "";
+    position: fixed;
+    inset: -40%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+}
+
+body.dark::after {
+    opacity: 1;
+    background:
         conic-gradient(
             from 0deg,
-            rgba(255,255,255,0.12),
-            transparent,
-            rgba(255,255,255,0.08),
-            transparent
+            transparent 0deg,
+            rgba(255,200,140,0.2) 40deg,
+            rgba(255,240,200,0.9) 90deg,
+            rgba(255,180,100,0.6) 140deg,
+            transparent 200deg,
+            rgba(255,220,180,0.4) 260deg,
+            transparent 360deg
+        ),
+        radial-gradient(circle at center,
+            transparent 0%,
+            transparent 32%,
+            rgba(255,220,160,0.8) 34%,
+            rgba(255,140,60,0.6) 38%,
+            transparent 45%
         );
 
-    animation: blackHoleSpin 22s linear infinite;
-    filter: blur(25px);
+    filter: blur(12px);
+    animation: diskSpin 18s linear infinite;
 }
 
-@keyframes starDrift {
-    from { transform: translateY(0); }
-    to { transform: translateY(600px); }
+@keyframes diskSpin {
+    from { transformi transform: rotate(0deg) scale(1); }
+    to   { transform: rotate(360deg) scale(1.05); }
 }
 
-@keyframes blackHoleSpin {
-    from { transform: rotate(0deg) scale(1); }
-    to { transform: rotate(360deg) scale(1.1); }
-}
+/* ========================= */
+/* CONTENT STYLING */
+/* ========================= */
 
-/* ===========================
-   HERO
-=========================== */
 .hero {
     text-align: center;
-    padding: 80px 20px;
+    padding: 3rem 1rem;
 }
 
-.hero h1 {
-    font-size: 2.6rem;
-}
-
-.subtitle {
-    opacity: 0.8;
-    margin-top: 10px;
-}
-
-#themeToggle {
-    margin-top: 25px;
-    font-size: 22px;
-    border: none;
-    border-radius: 50%;
-    padding: 14px;
+button {
+    margin-top: 1rem;
+    padding: 10px 15px;
+    font-size: 1.3rem;
     cursor: pointer;
-    background: var(--card);
-    box-shadow: 0 12px 30px var(--shadow);
+    border-radius: 50%;
+    border: none;
 }
 
-/* ===========================
-   CONTAINER
-=========================== */
 .container {
-    max-width: 1100px;
+    max-width: 900px;
     margin: auto;
-    padding: 40px 20px;
+    padding: 2rem;
 }
 
-/* ===========================
-   SECTIONS (PARALLAX READY)
-=========================== */
 .cv-section {
-    background: var(--card);
-    backdrop-filter: blur(14px);
-    border-radius: 18px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 18px 40px var(--shadow);
-    transition: transform 0.4s ease;
-    will-change: transform;
+    background: rgba(255,255,255,0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
 }
 
-.cv-section:hover {
-    transform: translateY(-6px);
-}
-
-h2 {
-    color: var(--primary);
-    margin-bottom: 14px;
-}
-
-/* ===========================
-   HOVER CONTENT
-=========================== */
-.hover-section .toggle-content {
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(12px);
-    overflow: hidden;
-    transition: all 0.5s ease;
-}
-
-.hover-section:hover .toggle-content {
-    max-height: 200px;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===========================
-   SKILLS
-=========================== */
 .skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-}
-
-.skills li {
     list-style: none;
-    padding: 10px 18px;
-    border-radius: 999px;
-    background: var(--card);
-    box-shadow: 0 8px 20px var(--shadow);
-}
-
-/* ===========================
-   PROJECTS
-=========================== */
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    display: flex;
+    gap: 1rem;
 }
 
 .card {
-    padding: 25px;
-    border-radius: 16px;
-    background: var(--card);
-    text-align: center;
-    box-shadow: 0 10px 25px var(--shadow);
-    transition: transform 0.4s ease;
+    background: rgba(255,255,255,0.15);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 0.5rem;
 }
 
-.card:hover {
-    transform: translateY(-6px);
-}
-
-/* ===========================
-   CONTACT
-=========================== */
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.contact-card {
-    padding: 25px;
-    border-radius: 16px;
-    background: var(--card);
-    text-align: center;
-    box-shadow: 0 10px 25px var(--shadow);
-}
-
-.contact-card span {
-    font-size: 26px;
-    display: block;
-    margin-bottom: 10px;
-}
-
-/* ===========================
-   FOOTER
-=========================== */
 footer {
     text-align: center;
-    padding: 25px;
+    padding: 1rem;
     opacity: 0.7;
 }
