@@ -1,121 +1,208 @@
-/* Root Variables */
+/* ---------------------- Root Variables ---------------------- */
 :root {
-    --day-bg: #87CEEB; /* Sky blue */
+    /* Day Mode Colors */
+    --day-bg: linear-gradient(to bottom, #87CEEB, #f5f7fa);
     --day-text: #000;
-    --day-card: #fff;
+    --day-card: rgba(255,255,255,0.9);
+    --day-shadow: rgba(0,0,0,0.1);
 
-    --dark-bg: #0D1B2A; /* Space navy */
+    /* Dark Mode Colors */
+    --dark-bg: linear-gradient(to bottom, #0D1B2A, #1B263B);
     --dark-text: #fff;
-    --dark-card: #1B263B;
+    --dark-card: rgba(255,255,255,0.05);
+    --dark-shadow: rgba(255,255,255,0.1);
 }
 
-/* Body Styles */
-body {
-    font-family: Arial, sans-serif;
+/* ---------------------- Global Styles ---------------------- */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: var(--day-bg);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--day-bg);
     color: var(--day-text);
-    transition: background-color 0.5s, color 0.5s;
+    transition: all 0.7s ease;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* Dark Mode */
-body.dark-mode {
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
+canvas#starCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
 }
 
-/* Header */
+/* ---------------------- Header ---------------------- */
 .hero {
     text-align: center;
-    padding: 2rem;
-    background: inherit;
+    padding: 3rem 1rem;
+    z-index: 2;
+    position: relative;
 }
 
 .hero h1 {
-    margin: 0.5rem 0;
-    font-size: 2.5rem;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
 }
 
 .subtitle {
     font-size: 1.2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
 }
 
 /* Theme Button */
 #themeToggle {
     background: transparent;
     border: 2px solid currentColor;
-    padding: 0.5rem 1rem;
+    color: inherit;
+    padding: 0.5rem 1.2rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 1rem;
+    transition: all 0.3s ease;
+    z-index: 2;
 }
 
-/* Sections */
-.cv-section {
-    padding: 1.5rem 2rem;
-    margin: 1rem auto;
+#themeToggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px currentColor;
+}
+
+/* ---------------------- CV Sections ---------------------- */
+.container {
     max-width: 900px;
-    border-radius: 10px;
-    background-color: var(--day-card);
-    transition: background-color 0.5s;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.cv-section {
+    background: var(--day-card);
+    margin-bottom: 2rem;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px var(--day-shadow);
+    transition: all 0.5s ease;
+    transform: translateY(0);
 }
 
 body.dark-mode .cv-section {
-    background-color: var(--dark-card);
+    background: var(--dark-card);
+    box-shadow: 0 8px 20px var(--dark-shadow);
 }
 
-/* Hover Sections */
+/* Hover Animation */
 .hover-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
 }
 
-/* Always-visible */
+/* Always Visible */
 .always-visible {
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
-/* Skills List */
+/* ---------------------- Skills ---------------------- */
 .skills {
     list-style: none;
-    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .skills li {
-    margin: 0.5rem 0;
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
-/* Cards */
+.skills li:hover {
+    background: rgba(255,255,255,0.4);
+    transform: scale(1.05);
+}
+
+/* ---------------------- Projects ---------------------- */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
 .card {
-    padding: 1rem;
-    margin: 0.5rem 0;
-    border-radius: 8px;
-    background-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.8);
+    padding: 1.2rem;
+    border-radius: 15px;
     text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255,255,255,0.7);
 }
 
 body.dark-mode .card {
-    background-color: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
 
-/* Contact Grid */
+/* ---------------------- Contact ---------------------- */
 .contact-grid {
     display: flex;
-    gap: 1rem;
     flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .contact-card {
     flex: 1 1 200px;
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.8);
     text-align: center;
+    padding: 1rem;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255,255,255,0.7);
 }
 
 body.dark-mode .contact-card {
-    background-color: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
+
+/* ---------------------- Footer ---------------------- */
+footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* ---------------------- Dark Mode Body ---------------------- */
+body.dark-mode {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+/* ---------------------- Animations ---------------------- */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.hover-section:hover .toggle-title {
+    animation: float 0.6s ease-in-out;
+}
+
