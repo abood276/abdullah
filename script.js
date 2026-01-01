@@ -1,16 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+const toggle = document.getElementById("themeToggle");
 
-    const toggleBtn = document.getElementById("themeToggle");
-    const icon = document.getElementById("themeIcon");
-
-    toggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-
-        if (document.body.classList.contains("dark")) {
-            icon.textContent = "🕳️";
-        } else {
-            icon.textContent = "⭐";
-        }
-    });
-
+toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
 });
