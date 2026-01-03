@@ -3,57 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdullah Firas - 3D CV</title>
+<title>Abdullah Firas - 3D Scroll CV</title>
 <link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
 
-<!-- 3D Background -->
-<canvas id="bg-3d"></canvas>
+<!-- 3D Canvas -->
+<canvas id="bg-engine"></canvas>
 
-<!-- Hero Section -->
-<section class="hero">
-  <svg id="name-svg" width="600" height="120">
-    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="60" fill="white">Abdullah Firas</text>
-  </svg>
-  <p>Full Stack Developer & Designer</p>
-</section>
+<!-- Info Panel -->
+<div class="info-panel">
+  <h2 id="info-title">Scroll to explore skills</h2>
+  <p id="info-desc"></p>
+</div>
 
-<!-- Skills Section -->
-<section class="skills">
-  <div class="skill-card">HTML</div>
-  <div class="skill-card">CSS</div>
-  <div class="skill-card">JavaScript</div>
-  <div class="skill-card">Python</div>
-  <div class="skill-card">React</div>
-  <div class="skill-card">Node.js</div>
-</section>
-
-<!-- Experience / Projects Section -->
-<section class="cards">
-  <div class="card">
-    <h3>Frontend Developer</h3>
-    <p>Company ABC - 2023</p>
-  </div>
-  <div class="card">
-    <h3>Backend Developer</h3>
-    <p>Company XYZ - 2022</p>
-  </div>
-  <div class="card">
-    <h3>Personal Project</h3>
-    <p>Portfolio Website & App</p>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section class="contact">
-  <a href="#">Email Me</a>
-  <a href="#">LinkedIn</a>
-  <a href="#">GitHub</a>
-</section>
-
-<script src="script.js"></script>
+<script src="engine-scroll.js"></script>
 </body>
 </html>
