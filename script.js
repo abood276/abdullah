@@ -1,39 +1,36 @@
-// --- Scene Setup ---
+// Scene setup
 const canvas = document.getElementById('bg-engine');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({canvas, alpha:true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 
-// --- Lights ---
-const ambient = new THREE.AmbientLight(0xffffff, 0.8);
+// Lights
+const ambient = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambient);
-const pointLight = new THREE.PointLight(0xffffff, 1);
-pointLight.position.set(50,50,50);
-scene.add(pointLight);
 
-// --- Skills & Projects ---
+const point = new THREE.PointLight(0xffffff, 1);
+point.position.set(50,50,50);
+scene.add(point);
+
+// Skills & projects
 const skills = [
-  {name:"HTML", desc:"Markup language for web pages"},
+  {name:"HTML", desc:"Markup language"},
   {name:"CSS", desc:"Styling web pages"},
-  {name:"JavaScript", desc:"Interactive frontend logic"},
-  {name:"Python", desc:"Backend & scripting"},
-  {name:"React", desc:"Frontend library"},
-  {name:"Node.js", desc:"Backend runtime"}
+  {name:"JS", desc:"Interactive frontend"},
 ];
 
 const projects = [
-  {name:"Portfolio", desc:"Personal portfolio website"},
-  {name:"E-commerce App", desc:"Fullstack web application"},
-  {name:"Blog Platform", desc:"Content management system"}
+  {name:"Portfolio", desc:"My personal website"},
+  {name:"E-commerce", desc:"Fullstack project"},
 ];
 
-// --- Create Shapes ---
+// Create shapes
 const shapes = [];
 function createShapes(data, zStart){
   const geom = new THREE.IcosahedronGeometry(2,0);
   data.forEach((item,i)=>{
-    const mat = new THREE.MeshStandardMaterial({color:0xffffff, transparent:true, opacity:1});
+    const mat = new THREE.MeshStandardMaterial({color:0xffffff});
     const mesh = new THREE.Mesh(geom.clone(), mat);
     mesh.position.set(
       (Math.random()-0.5)*8,
@@ -48,13 +45,14 @@ function createShapes(data, zStart){
 
 // Skills near camera
 createShapes(skills, 0);
-// Projects further down
-createShapes(projects, -50);
+// Projects further
+createShapes(projects, -40);
 
-// --- Camera ---
-camera.position.z = 20;
+// Camera
+camera.position.z = 15;
+let targetZ = 15;
 
-// --- Raycaster for hover ---
+// Raycaster
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 let INTERSECTED = null;
@@ -62,21 +60,25 @@ let INTERSECTED = null;
 const infoTitle = document.getElementById('info-title');
 const infoDesc = document.getElementById('info-desc');
 
-window.addEventListener('mousemove', (event)=>{
-  mouse.x = (event.clientX / window.innerWidth)*2 -1;
-  mouse.y = -(event.clientY / window.innerHeight)*2 +1;
+window.addEventListener('mousemove', e=>{
+  mouse.x = (e.clientX / window.innerWidth)*2 -1;
+  mouse.y = -(e.clientY / window.innerHeight)*2 +1;
 });
 
-// --- Scroll to move camera ---
+// Scroll
 window.addEventListener('scroll', ()=>{
   const scrollY = window.scrollY;
-  camera.position.z = 20 - scrollY * 0.05; // adjust speed
+  targetZ = 15 - scrollY * 0.1; // faster movement
 });
 
-// --- Animate Shapes ---
+// Animate
 function animate(){
   requestAnimationFrame(animate);
 
+  // Smooth camera movement
+  camera.position.z += (targetZ - camera.position.z) * 0.1;
+
+  // Rotate shapes
   shapes.forEach(s=>{
     s.rotation.x += 0.01;
     s.rotation.y += 0.01;
@@ -109,7 +111,7 @@ function animate(){
       });
     }
     INTERSECTED = null;
-    infoTitle.innerText = "Scroll to explore skills";
+    infoTitle.innerText = "Hover a shape";
     infoDesc.innerText = "";
   }
 
@@ -117,6 +119,7 @@ function animate(){
 }
 animate();
 
+// Resize
 window.addEventListener('resize', ()=>{
   camera.aspect = window.innerWidth/window.innerHeight;
   camera.updateProjectionMatrix();
