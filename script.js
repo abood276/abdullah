@@ -1,76 +1,75 @@
-/* ---------------------- Theme Toggle ---------------------- */
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
-const body = document.body;
+// --- Hero Animation ---
+anime.timeline()
+  .add({
+    targets: '.hero h1',
+    translateY: [-50, 0],
+    opacity: [0,1],
+    duration: 1500,
+    easing: 'easeOutExpo'
+  })
+  .add({
+    targets: '.hero p',
+    translateY: [50, 0],
+    opacity: [0,1],
+    duration: 1500,
+    easing: 'easeOutExpo'
+  }, "-=800");
 
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    if(body.classList.contains('dark-mode')) {
-        themeIcon.textContent = '🌙';
-        starCanvasInit();
-    } else {
-        themeIcon.textContent = '☀️';
-        stopStars();
-    }
+// --- Skills Animation ---
+anime({
+  targets: '.skill-card',
+  translateY: [50,0],
+  opacity: [0,1],
+  delay: anime.stagger(200, {start: 1000}),
+  duration: 1000,
+  easing: 'easeOutExpo'
 });
 
-/* ---------------------- Star Animation for Dark Mode ---------------------- */
-const canvas = document.getElementById('starCanvas');
+// --- Cards Animation ---
+anime({
+  targets: '.card',
+  translateY: [50,0],
+  opacity: [0,1],
+  delay: anime.stagger(300, {start: 2000}),
+  duration: 1000,
+  easing: 'easeOutExpo'
+});
+
+// --- Floating Shapes Background ---
+const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
-let starsArray = [];
-let animationId;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-function Star(x,y,radius,speed){
-    this.x = x;
-    this.y = y;
-    this.radius = radius;
-    this.speed = speed;
-    this.alpha = Math.random();
+let shapes = [];
+for(let i=0;i<30;i++){
+  shapes.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    radius: Math.random()*20+10,
+    dx: (Math.random()-0.5)*1,
+    dy: (Math.random()-0.5)*1,
+    color: `rgba(255,255,255,${Math.random()*0.3})`
+  });
 }
 
-Star.prototype.draw = function(){
-    ctx.save();
-    ctx.globalAlpha = this.alpha;
+function animateShapes(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  shapes.forEach(s=>{
     ctx.beginPath();
-    ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
-    ctx.fillStyle = "white";
+    ctx.arc(s.x,s.y,s.radius,0,Math.PI*2);
+    ctx.fillStyle = s.color;
     ctx.fill();
-    ctx.restore();
+    s.x += s.dx;
+    s.y += s.dy;
+    if(s.x>canvas.width||s.x<0) s.dx*=-1;
+    if(s.y>canvas.height||s.y<0) s.dy*=-1;
+  });
+  requestAnimationFrame(animateShapes);
 }
+animateShapes();
 
-Star.prototype.update = function(){
-    this.y -= this.speed;
-    if(this.y < 0) this.y = canvas.height;
-    this.draw();
-}
-
-function starCanvasInit(){
-    starsArray = [];
-    for(let i=0;i<150;i++){
-        let x = Math.random()*canvas.width;
-        let y = Math.random()*canvas.height;
-        let radius = Math.random()*2;
-        let speed = Math.random()*0.5+0.2;
-        starsArray.push(new Star(x,y,radius,speed));
-    }
-    animateStars();
-}
-
-function animateStars(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    starsArray.forEach(star=>star.update());
-    animationId = requestAnimationFrame(animateStars);
-}
-
-function stopStars(){
-    cancelAnimationFrame(animationId);
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-}
-
-/* Resize canvas */
-window.addEventListener('resize',()=>{
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 });
