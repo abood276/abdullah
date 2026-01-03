@@ -1,75 +1,65 @@
-// --- Hero Animation ---
+// --- Hero Animations ---
 anime.timeline()
   .add({
-    targets: '.hero h1',
-    translateY: [-50, 0],
-    opacity: [0,1],
-    duration: 1500,
-    easing: 'easeOutExpo'
-  })
-  .add({
     targets: '.hero p',
-    translateY: [50, 0],
-    opacity: [0,1],
-    duration: 1500,
-    easing: 'easeOutExpo'
-  }, "-=800");
+    translateY:[50,0],
+    opacity:[0,1],
+    duration:1500,
+    easing:'easeOutExpo'
+  });
 
 // --- Skills Animation ---
 anime({
-  targets: '.skill-card',
-  translateY: [50,0],
-  opacity: [0,1],
-  delay: anime.stagger(200, {start: 1000}),
-  duration: 1000,
-  easing: 'easeOutExpo'
+  targets:'.skill-card',
+  translateY:[50,0],
+  opacity:[0,1],
+  delay:anime.stagger(200,{start:500}),
+  duration:1000,
+  easing:'easeOutExpo'
 });
 
 // --- Cards Animation ---
 anime({
-  targets: '.card',
-  translateY: [50,0],
-  opacity: [0,1],
-  delay: anime.stagger(300, {start: 2000}),
-  duration: 1000,
-  easing: 'easeOutExpo'
+  targets:'.card',
+  translateY:[50,0],
+  opacity:[0,1],
+  delay:anime.stagger(300,{start:1000}),
+  duration:1000,
+  easing:'easeOutExpo'
 });
 
-// --- Floating Shapes Background ---
-const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// --- 3D Background using Three.js ---
+const canvas = document.getElementById('bg-3d');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,1000);
+const renderer = new THREE.WebGLRenderer({canvas, alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
 
-let shapes = [];
-for(let i=0;i<30;i++){
-  shapes.push({
-    x: Math.random()*canvas.width,
-    y: Math.random()*canvas.height,
-    radius: Math.random()*20+10,
-    dx: (Math.random()-0.5)*1,
-    dy: (Math.random()-0.5)*1,
-    color: `rgba(255,255,255,${Math.random()*0.3})`
-  });
+const shapes = [];
+for(let i=0;i<50;i++){
+  const geometry = new THREE.IcosahedronGeometry(Math.random()*0.5+0.2,0);
+  const material = new THREE.MeshStandardMaterial({color:0xffffff, transparent:true, opacity:0.2});
+  const mesh = new THREE.Mesh(geometry,material);
+  mesh.position.set((Math.random()-0.5)*20,(Math.random()-0.5)*10,(Math.random()-0.5)*20);
+  scene.add(mesh);
+  shapes.push(mesh);
 }
 
-function animateShapes(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  shapes.forEach(s=>{
-    ctx.beginPath();
-    ctx.arc(s.x,s.y,s.radius,0,Math.PI*2);
-    ctx.fillStyle = s.color;
-    ctx.fill();
-    s.x += s.dx;
-    s.y += s.dy;
-    if(s.x>canvas.width||s.x<0) s.dx*=-1;
-    if(s.y>canvas.height||s.y<0) s.dy*=-1;
-  });
-  requestAnimationFrame(animateShapes);
+const light = new THREE.PointLight(0xffffff,1);
+light.position.set(10,10,10);
+scene.add(light);
+
+camera.position.z = 10;
+
+function animate(){
+  requestAnimationFrame(animate);
+  shapes.forEach(s=>{ s.rotation.x += 0.01; s.rotation.y += 0.01; });
+  renderer.render(scene,camera);
 }
-animateShapes();
+animate();
 
 window.addEventListener('resize', ()=>{
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
 });

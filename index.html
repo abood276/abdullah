@@ -3,18 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdullah Firas - Animated CV</title>
+<title>Abdullah Firas - 3D CV</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
 </head>
 <body>
 
-<!-- Floating shapes canvas -->
-<canvas id="bg-canvas"></canvas>
+<!-- 3D Background -->
+<canvas id="bg-3d"></canvas>
 
 <!-- Hero Section -->
 <section class="hero">
-  <h1>Abdullah Firas</h1>
+  <svg id="name-svg" width="600" height="120">
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="60" fill="white">Abdullah Firas</text>
+  </svg>
   <p>Full Stack Developer & Designer</p>
 </section>
 
