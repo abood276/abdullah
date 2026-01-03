@@ -6,14 +6,13 @@ const renderer = new THREE.WebGLRenderer({canvas, alpha:true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 // --- Lights ---
-const light = new THREE.PointLight(0xffffff, 1);
-light.position.set(10, 10, 10);
-scene.add(light);
-
-const ambient = new THREE.AmbientLight(0xffffff, 0.6); // ambient light to see shapes
+const ambient = new THREE.AmbientLight(0xffffff, 0.8);
 scene.add(ambient);
+const pointLight = new THREE.PointLight(0xffffff, 1);
+pointLight.position.set(50,50,50);
+scene.add(pointLight);
 
-// --- Skills & Projects Data ---
+// --- Skills & Projects ---
 const skills = [
   {name:"HTML", desc:"Markup language for web pages"},
   {name:"CSS", desc:"Styling web pages"},
@@ -29,17 +28,17 @@ const projects = [
   {name:"Blog Platform", desc:"Content management system"}
 ];
 
-// --- Create Shapes Function ---
+// --- Create Shapes ---
 const shapes = [];
 function createShapes(data, zStart){
-  const geom = new THREE.IcosahedronGeometry(1,0); // larger
+  const geom = new THREE.IcosahedronGeometry(2,0);
   data.forEach((item,i)=>{
     const mat = new THREE.MeshStandardMaterial({color:0xffffff, transparent:true, opacity:1});
     const mesh = new THREE.Mesh(geom.clone(), mat);
     mesh.position.set(
-      (Math.random()-0.5)*6,
-      (Math.random()-0.5)*4,
-      zStart - i*4 // spaced along Z
+      (Math.random()-0.5)*8,
+      (Math.random()-0.5)*5,
+      zStart - i*6
     );
     mesh.userData = {name:item.name, desc:item.desc};
     scene.add(mesh);
@@ -48,13 +47,12 @@ function createShapes(data, zStart){
 }
 
 // Skills near camera
-createShapes(skills, -5);
-
+createShapes(skills, 0);
 // Projects further down
-createShapes(projects, -35);
+createShapes(projects, -50);
 
 // --- Camera ---
-camera.position.z = 5;
+camera.position.z = 20;
 
 // --- Raycaster for hover ---
 const raycaster = new THREE.Raycaster();
@@ -72,28 +70,43 @@ window.addEventListener('mousemove', (event)=>{
 // --- Scroll to move camera ---
 window.addEventListener('scroll', ()=>{
   const scrollY = window.scrollY;
-  camera.position.z = 5 - scrollY * 0.05; // increased speed
+  camera.position.z = 20 - scrollY * 0.05; // adjust speed
 });
 
 // --- Animate Shapes ---
 function animate(){
   requestAnimationFrame(animate);
-  shapes.forEach(s=> s.rotation.x += 0.01, s.rotation.y += 0.01);
 
-  // raycasting
+  shapes.forEach(s=>{
+    s.rotation.x += 0.01;
+    s.rotation.y += 0.01;
+  });
+
+  // Hover detection
   raycaster.setFromCamera(mouse, camera);
   const intersects = raycaster.intersectObjects(shapes);
 
   if(intersects.length>0){
-    if(INTERSECTED!=intersects[0].object){
+    if(INTERSECTED != intersects[0].object){
       INTERSECTED = intersects[0].object;
       infoTitle.innerText = INTERSECTED.userData.name;
       infoDesc.innerText = INTERSECTED.userData.desc;
-      anime({targets:INTERSECTED.scale,x:1.5,y:1.5,z:1.5,duration:300,easing:'easeOutExpo'});
+
+      anime({
+        targets: INTERSECTED.scale,
+        x:1.5, y:1.5, z:1.5,
+        duration:300,
+        easing:'easeOutExpo'
+      });
     }
   } else {
     if(INTERSECTED){
-      anime({targets:INTERSECTED.scale,x:1,y:1,z:1,duration:300,easing:'easeOutExpo'});
+      anime({
+        targets: INTERSECTED.scale,
+        x:1, y:1, z:1,
+        duration:300,
+        easing:'easeOutExpo'
+      });
     }
     INTERSECTED = null;
     infoTitle.innerText = "Scroll to explore skills";
