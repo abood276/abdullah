@@ -22,17 +22,9 @@ const icon = document.getElementById("themeIcon");
 
 if (toggle && icon) {
     toggle.addEventListener("click", () => {
-        // toggle theme first (this changes colors)
+        // just toggle theme and icon – no extra movement
         document.body.classList.toggle("dark");
         icon.textContent = document.body.classList.contains("dark") ? "🌙" : "☀️";
-
-        // make the name "fall" then drop back in with new color
-        if (heroText) {
-            heroText.classList.add("name-switching");
-            setTimeout(() => {
-                heroText.classList.remove("name-switching");
-            }, 650);
-        }
     });
 }
 
