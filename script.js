@@ -2,15 +2,17 @@
    HERO TEXT (ONCE)
 ====================== */
 const heroText = document.querySelector(".animated-text");
-const text = heroText.textContent;
-heroText.textContent = "";
+if (heroText) {
+    const text = heroText.textContent;
+    heroText.textContent = "";
 
-[...text].forEach((char, i) => {
-    const span = document.createElement("span");
-    span.textContent = char === " " ? "\u00A0" : char;
-    span.style.animationDelay = `${i * 0.05}s`;
-    heroText.appendChild(span);
-});
+    [...text].forEach((char, i) => {
+        const span = document.createElement("span");
+        span.textContent = char === " " ? "\u00A0" : char;
+        span.style.animationDelay = `${i * 0.05}s`;
+        heroText.appendChild(span);
+    });
+}
 
 /* ======================
    DARK MODE
@@ -18,10 +20,12 @@ heroText.textContent = "";
 const toggle = document.getElementById("themeToggle");
 const icon = document.getElementById("themeIcon");
 
-toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    icon.textContent = document.body.classList.contains("dark") ? "🌙" : "☀️";
-});
+if (toggle && icon) {
+    toggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        icon.textContent = document.body.classList.contains("dark") ? "🌙" : "☀️";
+    });
+}
 
 /* ======================
    STAR BACKGROUND

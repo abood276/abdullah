@@ -11,66 +11,74 @@
 <canvas id="stars"></canvas>
 
 <header class="hero">
-    <h1 class="animated-text">ABDULLAH FIRAS</h1>
-    <p class="subtitle">Computer Science Student & Aspiring Developer</p>
-    <button id="themeBtn" aria-label="Toggle theme"></button>
+    <h1 class="animated-text">ABDULLAH&nbsp;FIRAS</h1>
+    <p class="subtitle">Computer Science Student &amp; Aspiring Developer</p>
+    <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+        <span id="themeIcon">☀️</span>
+    </button>
 </header>
 
 <main class="container">
 
     <!-- HOVER REVEAL SECTIONS -->
-    <section class="cv-section hover-reveal">
-        <h2>About Me</h2>
-        <div class="reveal">
-            <p>
+    <section class="cv-section">
+        <div class="card hover-reveal">
+            <h2>About Me</h2>
+            <p class="reveal-text">
                 I am a motivated computer science student learning web development
                 and building modern, responsive websites using HTML, CSS, and JavaScript.
             </p>
         </div>
     </section>
 
-    <section class="cv-section hover-reveal">
-        <h2>Education</h2>
-        <div class="reveal">
-            <p>Bachelor’s Degree — In Progress</p>
+    <section class="cv-section">
+        <div class="card hover-reveal">
+            <h2>Education</h2>
+            <p class="reveal-text">Bachelor’s Degree — In Progress</p>
         </div>
     </section>
 
-    <section class="cv-section hover-reveal">
-        <h2>Experience / Courses</h2>
-        <div class="reveal">
-            <p>Online courses, personal projects, and hands-on practice.</p>
+    <section class="cv-section">
+        <div class="card hover-reveal">
+            <h2>Experience / Courses</h2>
+            <p class="reveal-text">Online courses, personal projects, and hands-on practice.</p>
         </div>
     </section>
 
     <!-- ALWAYS VISIBLE -->
     <section class="cv-section">
-        <h2>Skills</h2>
-        <ul class="skills">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Problem Solving</li>
-        </ul>
-    </section>
-
-    <section class="cv-section">
-        <h2>Projects</h2>
-        <div class="cards">
-            <div class="card">CV Portfolio Website</div>
-            <div class="card">JavaScript Mini Projects</div>
-            <div class="card">HTML & CSS Practice</div>
+        <div class="card">
+            <h2>Skills</h2>
+            <ul class="skills">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Problem Solving</li>
+            </ul>
         </div>
     </section>
 
     <section class="cv-section">
-        <h2>Contact</h2>
-        <div class="contact">
-            <div class="card">
-                📧 abdullah2762002@email.com
+        <div class="card">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project">CV Portfolio Website</div>
+                <div class="project">JavaScript Mini Projects</div>
+                <div class="project">HTML &amp; CSS Practice</div>
             </div>
-            <div class="card">
-                📞 +964 07726322002
+        </div>
+    </section>
+
+    <section class="cv-section">
+        <div class="card">
+            <h2>Contact</h2>
+            <div class="projects">
+                <div class="project">
+                    📧 abdullah2762002@email.com
+                </div>
+                <div class="project">
+                    📞 +964 07726322002
+                </div>
             </div>
         </div>
     </section>
