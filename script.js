@@ -24,6 +24,12 @@ if (toggle && icon) {
     toggle.addEventListener("click", () => {
         document.body.classList.toggle("dark");
         icon.textContent = document.body.classList.contains("dark") ? "🌙" : "☀️";
+
+        // subtle pulse effect on theme change
+        document.body.classList.add("theme-switching");
+        setTimeout(() => {
+            document.body.classList.remove("theme-switching");
+        }, 500);
     });
 }
 
