@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
+/* Light theme (default) */
 :root {
-  --bg: radial-gradient(circle at top, #020617 0, #020617 35%, #000 100%);
-  --text: #e5e7eb;
-  --card: rgba(15,23,42,0.85);
+  --bg: radial-gradient(circle at top, #e0f2fe 0, #eff6ff 40%, #c7d2fe 80%);
+  --text: #0f172a;
+  --card: rgba(255,255,255,0.9);
 }
 
+/* Dark / universe theme */
 body.dark {
   --bg: radial-gradient(circle at top, #000 0, #020617 40%, #000 100%);
   --text: #e5e7eb;
@@ -251,10 +253,14 @@ body::after {
 
 .skills li {
   padding: 8px 14px;
-  background: rgba(0,0,0,0.05);
+  background: rgba(15,23,42,0.06);
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+body.dark .skills li {
+  background: rgba(15,23,42,0.8);
 }
 
 /* Projects */
