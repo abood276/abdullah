@@ -1,18 +1,13 @@
 :root {
-  --bg: #0b0f1a;
-  --card: rgba(255,255,255,0.08);
-  --text: #e5e7eb;
-  --accent: #60a5fa;
+  --bg: #eaf3ff;
+  --text: #0f172a;
+  --card: rgba(255,255,255,0.85);
 }
 
 body.dark {
-  --bg: #0b0f1a;
+  --bg: #020617;
   --text: #e5e7eb;
-}
-
-body:not(.dark) {
-  --bg: #eaf2ff;
-  --text: #0f172a;
+  --card: rgba(15,23,42,0.85);
 }
 
 * {
@@ -24,123 +19,126 @@ body:not(.dark) {
 body {
   font-family: system-ui, sans-serif;
   color: var(--text);
-  background: var(--bg);
-  min-height: 100vh;
-  overflow-x: hidden;
+  transition: background 0.6s ease, color 0.6s ease;
 }
 
-canvas#stars {
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: -2;
+}
+
+/* Stars canvas */
+#stars {
   position: fixed;
   inset: 0;
   z-index: -1;
+  pointer-events: none;
 }
 
+/* Hero */
 .hero {
   text-align: center;
-  padding: 4rem 1rem 3rem;
+  padding: 100px 20px 60px;
 }
 
 .animated-text {
-  white-space: nowrap;
-  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   letter-spacing: 0.15em;
 }
 
-.subtitle {
-  opacity: 0.7;
-  margin-top: 0.5rem;
-}
-
-#themeBtn {
-  margin-top: 1.5rem;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  background: radial-gradient(circle at 30% 30%, #fff, #60a5fa);
-}
-
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 2rem 1rem 4rem;
-  display: grid;
-  gap: 1.5rem;
-}
-
-.cv-section {
-  background: var(--card);
-  backdrop-filter: blur(12px);
-  padding: 1.5rem;
-  border-radius: 14px;
-  transition: transform 0.3s ease;
-}
-
-.cv-section:hover {
-  transform: translateY(-6px);
-}
-
-h2 {
-  margin-bottom: 0.5rem;
-}
-
-/* 🔥 HOVER REVEAL MAGIC */
-.hover-reveal .reveal {
-  max-height: 0;
+.animated-text span {
+  display: inline-block;
   opacity: 0;
-  filter: blur(8px);
-  transform: translateY(10px);
-  transition:
-      max-height 0.6s ease,
-      opacity 0.6s ease,
-      filter 0.6s ease,
-      transform 0.6s ease;
+  transform: translateY(20px);
+  animation: intro 0.6s ease forwards;
 }
 
-.hover-reveal:hover .reveal {
-  max-height: 200px;
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(0);
-}
-
-/* Mobile: always visible */
-@media (hover: none) {
-  .hover-reveal .reveal {
-      max-height: 200px;
+@keyframes intro {
+  to {
       opacity: 1;
-      filter: none;
-      transform: none;
+      transform: translateY(0);
   }
 }
 
-.skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.subtitle {
+  margin-top: 10px;
+  opacity: 0.7;
 }
 
-.skills li {
-  list-style: none;
-  padding: 0.4rem 0.8rem;
+.theme-btn {
+  margin-top: 25px;
+  padding: 12px 18px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.12);
+  border: none;
+  cursor: pointer;
 }
 
-.cards, .contact {
+/* Layout */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
   display: grid;
-  gap: 1rem;
+  gap: 25px;
 }
 
 .card {
-  padding: 1rem;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.12);
+  background: var(--card);
+  padding: 25px;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease;
 }
 
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* Hover reveal */
+.reveal-text {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  margin-top: 12px;
+}
+
+.reveal:hover .reveal-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skills */
+.skills {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.skills li {
+  padding: 8px 14px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 999px;
+}
+
+/* Projects */
+.projects {
+  display: grid;
+  gap: 12px;
+}
+
+.project {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.05);
+}
+
+/* Footer */
 footer {
   text-align: center;
-  opacity: 0.5;
-  padding: 2rem 0;
+  padding: 30px;
+  opacity: 0.6;
 }
