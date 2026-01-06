@@ -8,37 +8,64 @@
 </head>
 <body>
 
+<canvas id="stars"></canvas>
+
 <header class="hero">
-    <h1>Abdullah Firas</h1>
+    <h1 class="animated-text">HELLO, I'M ABDULLAH FIRAS</h1>
     <p class="subtitle">Computer Science Student & Aspiring Developer</p>
 
-    <button id="themeToggle" aria-label="Toggle theme">
-        <span class="theme-dot"></span>
+    <button id="themeToggle" class="theme-btn">
+        <span id="themeIcon">☀️</span>
     </button>
 </header>
 
 <main class="container">
-    <section class="cv-section">
+
+    <section class="card hover-reveal">
         <h2>About Me</h2>
-        <p>Motivated CS student focused on modern web development.</p>
+        <p>
+            I am a motivated computer science student learning web development
+            and building modern, responsive websites using HTML, CSS, and JavaScript.
+        </p>
     </section>
 
-    <section class="cv-section">
+    <section class="card hover-reveal">
+        <h2>Education</h2>
+        <p>Bachelor’s Degree — In Progress</p>
+    </section>
+
+    <section class="card hover-reveal">
+        <h2>Experience / Courses</h2>
+        <p>Online courses, personal projects, and hands-on practice.</p>
+    </section>
+
+    <section class="card">
         <h2>Skills</h2>
         <ul class="skills">
             <li>HTML</li>
             <li>CSS</li>
             <li>JavaScript</li>
+            <li>Problem Solving</li>
         </ul>
     </section>
 
-    <section class="cv-section">
+    <section class="card">
         <h2>Projects</h2>
         <div class="projects">
-            <div class="card">CV Portfolio</div>
-            <div class="card">Mini JS Apps</div>
+            <div class="project">CV Portfolio Website</div>
+            <div class="project">JavaScript Mini Projects</div>
+            <div class="project">HTML & CSS Practice</div>
         </div>
     </section>
+
+    <section class="card">
+        <h2>Contact</h2>
+        <div class="contact">
+            <p>📧 example@email.com</p>
+            <p>📞 +964 07726322002</p>
+        </div>
+    </section>
+
 </main>
 
 <footer>

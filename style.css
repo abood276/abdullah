@@ -1,183 +1,116 @@
-/* RESET */
+:root {
+  --bg: #eaf3ff;
+  --text: #0f172a;
+  --card: rgba(255,255,255,0.85);
+  --accent: #2563eb;
+}
+
+body.dark {
+  --bg: #020617;
+  --text: #e5e7eb;
+  --card: rgba(15,23,42,0.85);
+  --accent: #60a5fa;
+}
+
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* =====================
- BASE COLORS
-===================== */
-:root {
-  --text: #0f172a;
-  --card-bg: rgba(255,255,255,0.75);
-}
-
-body.dark {
-  --text: #e5e7eb;
-  --card-bg: rgba(15,23,42,0.75);
-}
-
-/* =====================
- BODY & BACKGROUND
-===================== */
 body {
-  min-height: 100vh;
+  background: var(--bg);
   color: var(--text);
-  background: #eaf2ff;
+  font-family: system-ui, sans-serif;
+  min-height: 100vh;
   overflow-x: hidden;
-  position: relative;
+  transition: background 0.6s ease, color 0.6s ease;
 }
 
-/* LIGHT MODE – SOFT BLUE STAR */
-body::before {
-  content: "";
+/* STAR CANVAS */
+#stars {
   position: fixed;
-  inset: -30%;
-  z-index: -2;
-
-  background:
-      radial-gradient(circle at center,
-          rgba(120,180,255,0.9) 0%,
-          rgba(120,180,255,0.4) 20%,
-          transparent 55%
-      );
-
-  animation: lightDrift 20s ease-in-out infinite;
-  filter: blur(80px);
-}
-
-@keyframes lightDrift {
-  0%   { transform: translate(0,0) scale(1); }
-  50%  { transform: translate(-5%, 3%) scale(1.1); }
-  100% { transform: translate(0,0) scale(1); }
-}
-
-/* =====================
- DARK MODE – BLACK HOLE
-===================== */
-body.dark {
-  background: #020617;
-}
-
-body.dark::before {
-  background:
-      radial-gradient(circle at center,
-          #000 0%,
-          #000 18%,
-          rgba(80,60,40,0.8) 22%,
-          rgba(0,0,0,0.95) 35%,
-          transparent 60%
-      );
-  filter: blur(20px);
-}
-
-/* ACCRETION DISK */
-body.dark::after {
-  content: "";
-  position: fixed;
-  inset: -40%;
+  inset: 0;
   z-index: -1;
-
-  background:
-      conic-gradient(
-          from 0deg,
-          transparent 0deg,
-          rgba(255,190,120,0.15) 60deg,
-          rgba(255,220,170,0.5) 120deg,
-          rgba(255,160,80,0.25) 180deg,
-          transparent 260deg
-      );
-
-  filter: blur(35px);
-  animation: diskRotate 40s linear infinite;
 }
 
-@keyframes diskRotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-/* =====================
- CONTENT
-===================== */
+/* HERO */
 .hero {
   text-align: center;
-  padding: 4rem 1rem 2rem;
+  padding: 100px 20px 60px;
+}
+
+.animated-text {
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.15em;
 }
 
 .subtitle {
+  margin-top: 10px;
   opacity: 0.8;
 }
 
-.container {
-  max-width: 900px;
-  margin: auto;
-  padding: 2rem;
+.theme-btn {
+  margin-top: 25px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: var(--card);
+  font-size: 18px;
 }
 
-.cv-section {
-  background: var(--card-bg);
-  backdrop-filter: blur(14px);
-  padding: 1.6rem;
+/* CONTENT */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+  display: grid;
+  gap: 25px;
+}
+
+.card {
+  background: var(--card);
+  padding: 25px;
   border-radius: 16px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
 }
 
 .skills {
-  list-style: none;
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
 }
 
-.skills li,
-.card {
-  padding: 0.6rem 1rem;
-  border-radius: 999px;
+.skills li {
+  padding: 8px 14px;
   background: rgba(0,0,0,0.05);
-}
-
-body.dark .skills li,
-body.dark .card {
-  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
 }
 
 .projects {
-  display: flex;
-  gap: 1rem;
+  display: grid;
+  gap: 12px;
 }
 
-/* =====================
- THEME BUTTON (PRO)
-===================== */
-#themeToggle {
-  margin-top: 1.5rem;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(0,0,0,0.15);
-  cursor: pointer;
-  position: relative;
+.project {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.05);
 }
 
-.theme-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #2563eb;
-  display: block;
-  margin: auto;
-}
-
-body.dark .theme-dot {
-  background: #fbbf24;
+.contact p {
+  margin: 8px 0;
 }
 
 footer {
   text-align: center;
-  padding: 1.5rem;
+  padding: 30px;
   opacity: 0.6;
 }
