@@ -144,6 +144,49 @@ body::after {
   color: #cbd5e1;
 }
 
+/* Special effects for last three sections (Skills, Projects, Contact) */
+@keyframes sectionRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cv-section:nth-of-type(n+4) .card {
+  opacity: 0;
+  animation: sectionRise 0.7s ease forwards;
+}
+
+.cv-section:nth-of-type(4) .card {
+  animation-delay: 0.1s;
+}
+
+.cv-section:nth-of-type(5) .card {
+  animation-delay: 0.25s;
+}
+
+.cv-section:nth-of-type(6) .card {
+  animation-delay: 0.4s;
+}
+
+.cv-section:nth-of-type(n+4) .card:hover {
+  box-shadow: 0 0 30px rgba(56,189,248,0.35);
+}
+
+.cv-section:nth-of-type(n+4) h2::after {
+  content: "";
+  display: block;
+  margin-top: 6px;
+  width: 32px;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8, #a855f7);
+  opacity: 0.9;
+}
+
 .card {
   background: var(--card);
   padding: 25px;
