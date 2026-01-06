@@ -2,14 +2,12 @@
   --bg: #eaf3ff;
   --text: #0f172a;
   --card: rgba(255,255,255,0.85);
-  --accent: #2563eb;
 }
 
 body.dark {
   --bg: #020617;
   --text: #e5e7eb;
   --card: rgba(15,23,42,0.85);
-  --accent: #60a5fa;
 }
 
 * {
@@ -19,22 +17,28 @@ body.dark {
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
   font-family: system-ui, sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
+  color: var(--text);
   transition: background 0.6s ease, color 0.6s ease;
 }
 
-/* STAR CANVAS */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: -2;
+}
+
+/* Stars canvas */
 #stars {
   position: fixed;
   inset: 0;
   z-index: -1;
+  pointer-events: none;
 }
 
-/* HERO */
+/* Hero */
 .hero {
   text-align: center;
   padding: 100px 20px 60px;
@@ -45,9 +49,23 @@ body {
   letter-spacing: 0.15em;
 }
 
+.animated-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: intro 0.6s ease forwards;
+}
+
+@keyframes intro {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
 .subtitle {
   margin-top: 10px;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .theme-btn {
@@ -56,11 +74,9 @@ body {
   border-radius: 999px;
   border: none;
   cursor: pointer;
-  background: var(--card);
-  font-size: 18px;
 }
 
-/* CONTENT */
+/* Layout */
 .container {
   max-width: 1000px;
   margin: auto;
@@ -81,11 +97,25 @@ body {
   transform: translateY(-6px);
 }
 
+/* Hover reveal */
+.reveal-text {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  margin-top: 12px;
+}
+
+.reveal:hover .reveal-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skills */
 .skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
   list-style: none;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .skills li {
@@ -94,6 +124,7 @@ body {
   border-radius: 999px;
 }
 
+/* Projects */
 .projects {
   display: grid;
   gap: 12px;
@@ -105,10 +136,7 @@ body {
   background: rgba(0,0,0,0.05);
 }
 
-.contact p {
-  margin: 8px 0;
-}
-
+/* Footer */
 footer {
   text-align: center;
   padding: 30px;
