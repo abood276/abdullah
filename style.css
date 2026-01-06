@@ -69,9 +69,9 @@ body.dark::after {
 
 .animated-text {
   font-size: clamp(2rem, 5vw, 3rem);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text);
+  color: #020617; /* stronger, almost black in day mode */
   font-weight: 700;
 }
 
@@ -79,7 +79,6 @@ body.dark .animated-text {
   background: linear-gradient(120deg, #38bdf8, #a855f7, #f97316);
   -webkit-background-clip: text;
   color: transparent;
-  text-shadow: 0 0 10px rgba(56,189,248,0.35);
 }
 
 .animated-text span {
