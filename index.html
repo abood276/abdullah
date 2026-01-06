@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3D Scroll CV</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Abdullah Firas | CV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<canvas id="bg-engine"></canvas>
+<header class="hero">
+    <h1>Abdullah Firas</h1>
+    <p class="subtitle">Computer Science Student & Aspiring Developer</p>
 
-<div class="info-panel">
-  <h2 id="info-title">Hover a shape</h2>
-  <p id="info-desc"></p>
-</div>
+    <button id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-dot"></span>
+    </button>
+</header>
 
-<script src="engine.js"></script>
+<main class="container">
+    <section class="cv-section">
+        <h2>About Me</h2>
+        <p>Motivated CS student focused on modern web development.</p>
+    </section>
+
+    <section class="cv-section">
+        <h2>Skills</h2>
+        <ul class="skills">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ul>
+    </section>
+
+    <section class="cv-section">
+        <h2>Projects</h2>
+        <div class="projects">
+            <div class="card">CV Portfolio</div>
+            <div class="card">Mini JS Apps</div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    © 2025 Abdullah Firas
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
