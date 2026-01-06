@@ -11,41 +11,40 @@
 <canvas id="stars"></canvas>
 
 <header class="hero">
-    <h1 class="animated-text">HELLO, I'M ABDULLAH FIRAS</h1>
+    <h1 class="animated-text">ABDULLAH FIRAS</h1>
     <p class="subtitle">Computer Science Student & Aspiring Developer</p>
-
-    <button id="themeToggle" class="theme-btn">
-        <span id="themeIcon">☀️</span>
-    </button>
+    <button id="themeBtn" aria-label="Toggle theme"></button>
 </header>
 
 <main class="container">
 
-    <!-- Hover reveal -->
-    <section class="card reveal">
+    <!-- HOVER REVEAL SECTIONS -->
+    <section class="cv-section hover-reveal">
         <h2>About Me</h2>
-        <p class="reveal-text">
-            I am a motivated computer science student learning web development
-            and building modern, responsive websites using HTML, CSS, and JavaScript.
-        </p>
+        <div class="reveal">
+            <p>
+                I am a motivated computer science student learning web development
+                and building modern, responsive websites using HTML, CSS, and JavaScript.
+            </p>
+        </div>
     </section>
 
-    <section class="card reveal">
+    <section class="cv-section hover-reveal">
         <h2>Education</h2>
-        <p class="reveal-text">
-            Bachelor’s Degree — In Progress
-        </p>
+        <div class="reveal">
+            <p>Bachelor’s Degree — In Progress</p>
+        </div>
     </section>
 
-    <section class="card reveal">
+    <section class="cv-section hover-reveal">
         <h2>Experience / Courses</h2>
-        <p class="reveal-text">
-            Online courses, personal projects, and hands-on practice.
-        </p>
+        <div class="reveal">
+            <p>Online courses, personal projects, and hands-on practice.</p>
+        </div>
     </section>
 
-    <!-- Always visible -->
-    <section class="card">
+    <!-- ALWAYS VISIBLE -->
+    <section class="cv-section">
         <h2>Skills</h2>
         <ul class="skills">
             <li>HTML</li>
@@ -55,24 +54,32 @@
         </ul>
     </section>
 
-    <section class="card">
+    <section class="cv-section">
         <h2>Projects</h2>
-        <div class="projects">
-            <div class="project">CV Portfolio Website</div>
-            <div class="project">JavaScript Mini Projects</div>
-            <div class="project">HTML & CSS Practice</div>
+        <div class="cards">
+            <div class="card">CV Portfolio Website</div>
+            <div class="card">JavaScript Mini Projects</div>
+            <div class="card">HTML & CSS Practice</div>
         </div>
     </section>
 
-    <section class="card">
+    <section class="cv-section">
         <h2>Contact</h2>
-        <p>📧 abdullah2762002@email.com</p>
-        <p>📞 +964 07726322002</p>
+        <div class="contact">
+            <div class="card">
+                📧 abdullah2762002@email.com
+            </div>
+            <div class="card">
+                📞 +964 07726322002
+            </div>
+        </div>
     </section>
 
 </main>
 
-<footer>© 2025 Abdullah Firas</footer>
+<footer>
+    © 2025 Abdullah Firas
+</footer>
 
 <script src="script.js"></script>
 </body>
