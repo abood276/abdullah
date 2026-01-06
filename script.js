@@ -22,14 +22,17 @@ const icon = document.getElementById("themeIcon");
 
 if (toggle && icon) {
     toggle.addEventListener("click", () => {
+        // toggle theme first (this changes colors)
         document.body.classList.toggle("dark");
         icon.textContent = document.body.classList.contains("dark") ? "🌙" : "☀️";
 
-        // subtle pulse effect on theme change
-        document.body.classList.add("theme-switching");
-        setTimeout(() => {
-            document.body.classList.remove("theme-switching");
-        }, 500);
+        // make the name "fall" then drop back in with new color
+        if (heroText) {
+            heroText.classList.add("name-switching");
+            setTimeout(() => {
+                heroText.classList.remove("name-switching");
+            }, 650);
+        }
     });
 }
 

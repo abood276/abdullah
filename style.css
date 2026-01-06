@@ -29,27 +29,6 @@ body {
   transition: background 0.6s ease, color 0.6s ease;
 }
 
-/* small pulse effect on theme switch */
-@keyframes themePulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(0.985);
-    opacity: 0.94;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-body.theme-switching .hero,
-body.theme-switching .container {
-  animation: themePulse 0.45s ease;
-}
-
 body::before {
   content: "";
   position: fixed;
@@ -96,6 +75,25 @@ body.dark::after {
   font-weight: 700;
 }
 
+@keyframes nameSwap {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(22px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-22px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 body.dark .animated-text {
   /* container keeps layout only; color comes from spans */
   color: inherit;
@@ -114,6 +112,11 @@ body.dark .animated-text span {
   opacity: 0;
   transform: translateY(20px);
   animation: intro 0.6s ease forwards;
+}
+
+.animated-text.name-switching span {
+  /* override intro animation when switching theme */
+  animation: nameSwap 0.6s ease forwards;
 }
 
 @keyframes intro {
@@ -152,11 +155,7 @@ body.dark .animated-text span {
 
 .theme-btn span {
   display: inline-block;
-  transition: transform 0.5s ease;
 }
-
-body.dark .theme-btn span {
-  transform: rotate(180deg);
 }
 
 /* Layout */
