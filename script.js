@@ -37,7 +37,7 @@ let stars = [];
 let mouseX = 0;
 let mouseY = 0;
 
-const STAR_COUNT = window.innerWidth < 768 ? 60 : 120;
+const STAR_COUNT = window.innerWidth < 768 ? 90 : 190;
 
 function resize() {
     canvas.width = innerWidth;
@@ -72,8 +72,8 @@ function animate() {
         if (s.alpha <= 0.2 || s.alpha >= 1) s.dir *= -1;
 
         ctx.fillStyle = dark
-            ? `rgba(255,255,255,${s.alpha})`
-            : `rgba(37,99,235,${s.alpha})`;
+            ? `rgba(248,250,252,${s.alpha})`
+            : `rgba(56,189,248,${s.alpha})`;
 
         ctx.beginPath();
         ctx.arc(
@@ -91,6 +91,27 @@ function animate() {
             s.x = Math.random() * canvas.width;
         }
     });
+
+    // occasional shooting star
+    if (Math.random() < 0.003) {
+        const startX = Math.random() * canvas.width * 0.8;
+        const startY = Math.random() * canvas.height * 0.4;
+        const length = 120;
+
+        const grad = ctx.createLinearGradient(
+            startX, startY,
+            startX + length, startY + 25
+        );
+        grad.addColorStop(0, "rgba(248,250,252,0.9)");
+        grad.addColorStop(1, "rgba(248,250,252,0)");
+
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(startX + length, startY + 25);
+        ctx.stroke();
+    }
 
     requestAnimationFrame(animate);
 }

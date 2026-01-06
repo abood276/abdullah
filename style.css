@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 :root {
-  --bg: #eaf3ff;
-  --text: #0f172a;
-  --card: rgba(255,255,255,0.85);
+  --bg: radial-gradient(circle at top, #020617 0, #020617 35%, #000 100%);
+  --text: #e5e7eb;
+  --card: rgba(15,23,42,0.85);
 }
 
 body.dark {
-  --bg: #020617;
+  --bg: radial-gradient(circle at top, #000 0, #020617 40%, #000 100%);
   --text: #e5e7eb;
-  --card: rgba(15,23,42,0.85);
+  --card: rgba(15,23,42,0.9);
 }
 
 * {
@@ -17,7 +19,7 @@ body.dark {
 }
 
 body {
-  font-family: system-ui, sans-serif;
+  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
   color: var(--text);
   min-height: 100vh;
   display: flex;
@@ -31,6 +33,20 @@ body::before {
   inset: 0;
   background: var(--bg);
   z-index: -2;
+  opacity: 1;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+      radial-gradient(ellipse at 50% 10%, rgba(148,163,184,0.18) 0, transparent 55%),
+      radial-gradient(ellipse at 10% 40%, rgba(30,64,175,0.2) 0, transparent 55%),
+      radial-gradient(ellipse at 80% 70%, rgba(15,118,110,0.15) 0, transparent 55%);
+  mix-blend-mode: screen;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Stars canvas */
@@ -53,6 +69,10 @@ body::before {
   font-size: clamp(2rem, 5vw, 3rem);
   letter-spacing: 0.15em;
   text-transform: uppercase;
+  background: linear-gradient(90deg, #38bdf8, #a855f7, #f97316);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 16px rgba(168,85,247,0.25);
 }
 
 .animated-text span {
@@ -72,25 +92,27 @@ body::before {
 .subtitle {
   margin-top: 10px;
   opacity: 0.7;
-  font-size: 0.95rem;
+  font-size: 1.02rem;
+  letter-spacing: 0.03em;
 }
 
 .theme-btn {
   margin-top: 25px;
-  padding: 12px 18px;
+  padding: 8px 10px;
   border-radius: 999px;
-  border: none;
+  border: 1px solid rgba(148,163,184,0.7);
   cursor: pointer;
-  background: rgba(0,0,0,0.05);
+  background: transparent;
+  color: var(--text);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .theme-btn:hover {
-  background: rgba(0,0,0,0.12);
+  background: rgba(148,163,184,0.16);
   transform: translateY(-2px);
 }
 
@@ -107,6 +129,19 @@ body::before {
 
 .cv-section {
   width: 100%;
+}
+
+.cv-section h2 {
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e2e8f0;
+}
+
+.cv-section p,
+.cv-section li {
+  line-height: 1.7;
+  color: #cbd5e1;
 }
 
 .card {
@@ -129,13 +164,38 @@ body::before {
 .reveal-text {
   opacity: 0;
   transform: translateY(14px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  filter: blur(4px);
+  transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
   margin-top: 12px;
 }
 
 .hover-reveal:hover .reveal-text {
   opacity: 1;
   transform: translateY(0);
+  filter: blur(0);
+}
+
+.hover-reveal h2 {
+  position: relative;
+  display: inline-block;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hover-reveal h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8, #a855f7, #f97316);
+  transition: width 0.4s ease;
+}
+
+.hover-reveal:hover h2::after {
+  width: 100%;
 }
 
 /* Skills */
